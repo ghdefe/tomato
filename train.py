@@ -6,7 +6,7 @@ import input_data
 import model
 
 # 变量声明
-N_CLASSES = 4  # 四种花类型
+N_CLASSES = 5  # 四种花类型
 IMG_W = 64  # resize图像，太大的话训练时间久
 IMG_H = 64
 BATCH_SIZE = 20

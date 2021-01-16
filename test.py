@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import model
 from input_data import get_files
 
+
 # 获取一张图片
 def get_one_image(train):
     # 输入参数：train,训练图片的路径
@@ -24,7 +25,7 @@ def get_one_image(train):
 def evaluate_one_image(image_array):
     with tf.Graph().as_default():
         BATCH_SIZE = 1
-        N_CLASSES = 4
+        N_CLASSES = 5
 
         image = tf.cast(image_array, tf.float32)
         image = tf.image.per_image_standardization(image)
@@ -53,19 +54,19 @@ def evaluate_one_image(image_array):
                 print('No checkpoint file found')
 
             prediction = sess.run(logit, feed_dict={x: image_array})
-            # print("prediction: " + prediction)
-            max_index = np.argmax(prediction)
-            if max_index == 0:
-                result = ('这是玫瑰花的可能性为： %.6f' % prediction[:, 0])
-            elif max_index == 1:
-                result = ('这是郁金香的可能性为： %.6f' % prediction[:, 1])
-            elif max_index == 2:
-                result = ('这是蒲公英的可能性为： %.6f' % prediction[:, 2])
-            else:
-                result = ('这是这是西红柿的可能性为： %.6f' % prediction[:, 3])
+            # # print("prediction: " + prediction)
+            # max_index = np.argmax(prediction)
+            # if max_index == 0:
+            #     result = ('这是玫瑰花的可能性为： %.6f' % prediction[:, 0])
+            # elif max_index == 1:
+            #     result = ('这是郁金香的可能性为： %.6f' % prediction[:, 1])
+            # elif max_index == 2:
+            #     result = ('这是蒲公英的可能性为： %.6f' % prediction[:, 2])
+            # else:
+            #     result = ('这是这是西红柿的可能性为： %.6f' % prediction[:, 3])
             # return result
-            result = prediction[:,3]
-            return result;
+            result = prediction[:, 3]
+            return result
 
 
 # ------------------------------------------------------------------------
