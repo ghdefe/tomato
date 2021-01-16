@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # ============================================================================
 # -----------------生成图片路径和标签的List------------------------------------
 
-train_dir = 'D:/ML/flower/input_data'
+train_dir = 'D:/ML/input_data'
 
 roses = []
 label_roses = []
@@ -15,6 +15,10 @@ tulips = []
 label_tulips = []
 dandelion = []
 label_dandelion = []
+tomatoflower = []
+label_tomatoflower = []
+
+
 sunflowers = []
 label_sunflowers = []
 
@@ -31,13 +35,16 @@ def get_files(file_dir, ratio):
     for file in os.listdir(file_dir + '/dandelion'):
         dandelion.append(file_dir + '/dandelion' + '/' + file)
         label_dandelion.append(2)
-    for file in os.listdir(file_dir + '/sunflowers'):
-        sunflowers.append(file_dir + '/sunflowers' + '/' + file)
-        label_sunflowers.append(3)
+    for file in os.listdir(file_dir + '/tomato'):
+        tomatoflower.append(file_dir + '/tomato' + '/' + file)
+        label_tomatoflower.append(3)
+    # for file in os.listdir(file_dir + '/sunflowers'):
+    #     sunflowers.append(file_dir + '/sunflowers' + '/' + file)
+    #     label_sunflowers.append(3)
 
     # step2：对生成的图片路径和标签List做打乱处理
-    image_list = np.hstack((roses, tulips, dandelion, sunflowers))
-    label_list = np.hstack((label_roses, label_tulips, label_dandelion, label_sunflowers))
+    image_list = np.hstack((roses, tulips, dandelion, tomatoflower))
+    label_list = np.hstack((label_roses, label_tulips, label_dandelion, label_tomatoflower))
 
     # 利用shuffle打乱顺序
     temp = np.array([image_list, label_list])

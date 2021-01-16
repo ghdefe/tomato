@@ -37,7 +37,7 @@ def evaluate_one_image(image_array):
         x = tf.placeholder(tf.float32, shape=[64, 64, 3])
 
         # you need to change the directories to yours.
-        logs_train_dir = 'D:/ML/flower/save/'
+        logs_train_dir = 'D:/ML/save/'
 
         saver = tf.train.Saver()
 
@@ -53,6 +53,7 @@ def evaluate_one_image(image_array):
                 print('No checkpoint file found')
 
             prediction = sess.run(logit, feed_dict={x: image_array})
+            # print("prediction: " + prediction)
             max_index = np.argmax(prediction)
             if max_index == 0:
                 result = ('这是玫瑰花的可能性为： %.6f' % prediction[:, 0])
@@ -61,16 +62,17 @@ def evaluate_one_image(image_array):
             elif max_index == 2:
                 result = ('这是蒲公英的可能性为： %.6f' % prediction[:, 2])
             else:
-                result = ('这是这是向日葵的可能性为： %.6f' % prediction[:, 3])
+                result = ('这是这是西红柿的可能性为： %.6f' % prediction[:, 3])
             return result
 
 
 # ------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    img = Image.open('D:/ML/flower/flower_photos/roses/12240303_80d87f77a3_n.jpg')
+    img = Image.open('D:/ML/input_data/tomato/google_0107.jpg')
     plt.imshow(img)
     plt.show()
     imag = img.resize([64, 64])
     image = np.array(imag)
-    evaluate_one_image(image)
+    one_image = evaluate_one_image(image)
+    print(one_image)
