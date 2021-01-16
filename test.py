@@ -63,16 +63,18 @@ def evaluate_one_image(image_array):
                 result = ('这是蒲公英的可能性为： %.6f' % prediction[:, 2])
             else:
                 result = ('这是这是西红柿的可能性为： %.6f' % prediction[:, 3])
-            return result
+            # return result
+            result = prediction[:,3]
+            return result;
 
 
 # ------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    img = Image.open('D:/ML/input_data/tomato/google_0107.jpg')
-    plt.imshow(img)
-    plt.show()
+    img = Image.open('D:/ML/input_data/tomato/google_0026.jpg')
+    # plt.imshow(img)
+    # plt.show()
     imag = img.resize([64, 64])
     image = np.array(imag)
     one_image = evaluate_one_image(image)
-    print(one_image)
+    print("这是西红柿可能性有：%.6f" % one_image)
